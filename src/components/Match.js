@@ -143,7 +143,7 @@ const Match = () => {
         <div className="container-fluid">
           <Link
             to="/"
-            className="h4 py-3 d-block text-decoration-none text-light"
+            className="h4 py-3 d-block text-decoration-none text-hover-effect"
           >
             Back to Home
           </Link>
@@ -163,10 +163,10 @@ const Match = () => {
               <h3 className="text-light m-0">{competitionName}</h3>
             </Link>
           </div>
-          <div className="lblue-font mb-2">Round {matchday}</div>
+          <div className="blue-font mb-2">Round {matchday}</div>
           <div className="d-flex grey-font">
             <h5 className="m-0 me-5">{date}</h5>
-            <span>{time}</span>
+            <h5 className="m-0">{time}</h5>
           </div>
         </div>
         <div className="row p-2">
@@ -195,16 +195,16 @@ const Match = () => {
                   </h5>
                 </Link>
 
-                <span className="score-font neon-effect3 h4 mx-2 d-md-none">
+                <span className="fs-3 text-light h4 mx-2 d-md-none">
                   {halfHomeScore || fullHomeScore}
                 </span>
               </div>
               <div className="col-3 justify-content-around p-0 d-none d-md-flex">
-                <span className="score-font neon-effect3 h4 mx-2">
+                <span className="fs-3 text-light h4 mx-2">
                   {halfHomeScore || fullHomeScore}
                 </span>
-                <h5 className="grey-font">X</h5>
-                <span className="score-font neon-effect3 h4 mx-2">
+                <h4 className="blue-font m-0">X</h4>
+                <span className="fs-3  text-light h4 mx-2">
                   {halfAwayScore || fullAwayScore}
                 </span>
               </div>
@@ -224,7 +224,7 @@ const Match = () => {
                   </h5>
                 </Link>
 
-                <span className="score-font neon-effect3 h4 mx-2 d-md-none">
+                <span className="fs-3  text-light h4 mx-2 d-md-none">
                   {halfAwayScore || fullAwayScore}
                 </span>
               </div>
@@ -260,7 +260,7 @@ const Match = () => {
     );
   } else {
     return (
-      <div className="col-md-8 col-xl-6 p-0 m-1 main-col-color">
+      <div className="col-md-8 col-xl-6 p-0 m-1 main-col-color mx-auto">
         <div>
           <h4 className="my-5 text-light text-center">
             Sorry, an error ocurred.

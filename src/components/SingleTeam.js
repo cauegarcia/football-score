@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import loadingLogo from "../assets/loading.gif";
+import IndividualGame from "./IndividualGame";
+import IndividualPlayer from "./IndividualPlayer";
 
 const SingleTeam = () => {
   const { id } = useParams();
@@ -133,7 +135,7 @@ const SingleTeam = () => {
         <div className="container-fluid">
           <Link
             to="/"
-            className="h4 py-3 d-block text-decoration-none text-light"
+            className="h4 py-3 d-block text-decoration-none text-hover-effect"
           >
             Back to Home
           </Link>
@@ -149,7 +151,7 @@ const SingleTeam = () => {
             <h3 className="text-light graduate-font text-center text-md-start">
               {name}
             </h3>
-            <h5 className="text-light">{country}</h5>
+            <h5 className="blue-font">{country}</h5>
             <h6 className="grey-font">
               Foundation: <span>{founded}</span>
             </h6>
@@ -176,7 +178,7 @@ const SingleTeam = () => {
           <ul className="nav nav-tabs" id="myTab" role="tablist">
             <li className="nav-item" role="presentation">
               <button
-                className="nav-link active"
+                className="nav-link active bg-red-detail"
                 id="matches-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#matches"
@@ -185,7 +187,7 @@ const SingleTeam = () => {
                 aria-controls="home"
                 aria-selected="true"
                 style={{
-                  color: "#929eacf3",
+                  color: "#D17C6E",
                 }}
               >
                 Matches
@@ -202,7 +204,7 @@ const SingleTeam = () => {
                 aria-controls="profile"
                 aria-selected="false"
                 style={{
-                  color: "#929eacf3",
+                  color: "#D17C6E",
                 }}
               >
                 Squad
@@ -233,107 +235,12 @@ const SingleTeam = () => {
                           : "Last Games"}
                       </h5>
                       {fixtures[round].map((match) => {
-                        const {
-                          status,
-                          utcDate,
-                          id,
-                          score,
-                          homeTeam: { name: home },
-                          awayTeam: { name: away },
-                        } = match;
-                        const {
-                          halfTime: {
-                            awayTeam: scoreAwayHalf,
-                            homeTeam: scoreHomeHalf,
-                          },
-                          fullTime: {
-                            awayTeam: scoreAwayFull,
-                            homeTeam: scoreHomeFull,
-                          },
-                        } = score;
-                        const offset =
-                          new Date().getTimezoneOffset() * 60 * 1000;
-                        const offsetDif = new Date(utcDate).getTime() - offset;
-                        const timeAdjusted = new Date(offsetDif).toISOString();
-                        let matchHour = timeAdjusted
-                          .split("T")[1]
-                          .split("Z")[0]
-                          .split(":");
-                        matchHour = `${matchHour[0]}:${matchHour[1]}`;
-                        let matchDate = utcDate.split("T")[0].split("-");
+                        let matchDate = match.utcDate.split("T")[0].split("-");
                         matchDate = matchDate[2] + "/" + matchDate[1];
                         return (
-                          <Link
-                            to={`/match/${id}`}
-                            key={id}
-                            className="d-block text-reset text-decoration-none"
-                          >
-                            <article className="border-bottom border-light">
-                              <div className="row p-0 ps-md-1 ps-md-2 container-fluid m-0">
-                                <div
-                                  className={`${
-                                    status === "FINISHED"
-                                      ? "grey-font col-3 col-md-2 my-auto p-0 me-2"
-                                      : status === "IN_PLAY" ||
-                                        status === "PAUSED"
-                                      ? "neon-effect4 col-3 col-md-2 my-auto p-0 me-2"
-                                      : "grey-font col-3 col-md-2 my-auto p-0 me-2"
-                                  }`}
-                                >
-                                  <h6 className="m-0 grey-font">{matchDate}</h6>
-                                  {status === "FINISHED"
-                                    ? "Finished"
-                                    : status === "IN_PLAY"
-                                    ? scoreAwayHalf === null &&
-                                      scoreHomeHalf === null
-                                      ? "First Half"
-                                      : "Second Half"
-                                    : status === "PAUSED"
-                                    ? "Interval"
-                                    : matchHour}
-                                </div>
-                                <div className="col d-md-flex p-1 ">
-                                  <div className="row container-fluid p-0 justify-content-between align-items-center">
-                                    <div className="col-10 col-md p-0 px-md-1 graduate-font text-light text-md-end">
-                                      {home}
-                                    </div>
-                                    <div
-                                      className={`${
-                                        status !== "FINISHED"
-                                          ? "col-1 col-md-2 neon-effect4 text-end score-font"
-                                          : "col-1 col-md-2 neon-effect3 text-end score-font"
-                                      }`}
-                                    >
-                                      {scoreHomeFull}
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="h5 m-0 container px-1 text-center d-none d-md-flex justify-content-center align-items-center"
-                                    style={{
-                                      width: "50px",
-                                      color: "#c6e2ff",
-                                    }}
-                                  >
-                                    X
-                                  </div>
-                                  <div className="row container-fluid p-0 d-md-flex flex-md-row-reverse justify-content-between align-items-center">
-                                    <div className="col-10 col-md p-0 px-md-1 graduate-font text-light pe-md-2 text-md-start">
-                                      {away}
-                                    </div>
-                                    <div
-                                      className={`${
-                                        status !== "FINISHED"
-                                          ? "col-1 col-md-2 neon-effect4 score-font"
-                                          : "col-1 col-md-2 neon-effect3 score-font"
-                                      }`}
-                                    >
-                                      {scoreAwayFull}
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </article>
-                          </Link>
+                          <IndividualGame key={match.id} match={match}>
+                            {<h6 className="m-0 grey-font">{matchDate}</h6>}
+                          </IndividualGame>
                         );
                       })}
                     </div>
@@ -358,26 +265,7 @@ const SingleTeam = () => {
                 </thead>
                 <tbody>
                   {playersSquad.map((player) => {
-                    const {
-                      name,
-                      nationality,
-                      dateOfBirth,
-                      position,
-                      id,
-                    } = player;
-                    const today = new Date();
-                    const birth = new Date(dateOfBirth);
-                    const difference =
-                      (today.getTime() - birth.getTime()) / 1000 / 86400 / 365;
-
-                    return (
-                      <tr key={id}>
-                        <td className="px-0 grey-font">{position}</td>
-                        <td>{name}</td>
-                        <td className="lblue-font">{nationality}</td>
-                        <td className="grey-font">{Math.floor(difference)}</td>
-                      </tr>
-                    );
+                    return <IndividualPlayer key={player.id} player={player} />;
                   })}
                 </tbody>
               </table>

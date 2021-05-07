@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DisplayStandingsTable from "../components/DisplayStandingsTable";
 import loadingLogo from "../assets/loading.gif";
+import { Link } from "react-router-dom";
 
 const Standings = ({ competitionId }) => {
   const [standing, setStanding] = useState(null);
@@ -27,7 +28,19 @@ const Standings = ({ competitionId }) => {
     setLoading(true);
     getStanding();
   }, [competitionId]);
-
+  useEffect(() => {
+    const toggleLoader = () => {
+      if (loading) {
+        setLoading(false);
+      }
+    };
+    let timer = setTimeout(() => {
+      toggleLoader();
+    }, 5000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
   if (loading) {
     return (
       <div className="container-fluid d-flex justify-content-center">
@@ -40,56 +53,74 @@ const Standings = ({ competitionId }) => {
       </div>
     );
   } else {
-    const {
-      standings: {
-        0: { table },
-      },
-      competition: { code, name: competitionName },
-    } = standing;
-    if (code === "CL") {
-      const { standings } = standing;
+    if (standing.error === 404) {
       return (
-        <div className="container table-responsive">
-          <h4
-            className="text-center lblue-font my-5"
-            style={{ background: "background: rgba(202, 228, 225, 0.1)" }}
+        <div className="col-md-8 col-xl-6 p-0 m-1 main-col-color mx-auto">
+          <div>
+            <h4 className="my-5 text-light text-center">
+              Sorry, an error ocurred.
+            </h4>
+          </div>
+          <Link
+            to="/"
+            className="h4 py-3 d-block text-decoration-none text-light text-center border border-light"
           >
-            {competitionName}
-          </h4>
-          {standings.map((item, index) => {
-            const { group, type, table } = item;
-            if (type !== "TOTAL") {
-              return;
-            } else {
-              return (
-                <React.Fragment key={index}>
-                  <h5
-                    className="text-center grey-font m-0"
-                    style={{
-                      background: "background: rgba(202, 228, 225, 0.1)",
-                    }}
-                  >
-                    {`Group ${group.charAt(6)}`}
-                  </h5>
-                  <DisplayStandingsTable table={table} />
-                </React.Fragment>
-              );
-            }
-          })}
+            Back to Home
+          </Link>
         </div>
       );
     } else {
-      return (
-        <div className="container table-responsive">
-          <h4
-            className="text-center lblue-font mt-2 mt-md-5"
-            style={{ background: "background: rgba(202, 228, 225, 0.1)" }}
-          >
-            {competitionName}
-          </h4>
-          <DisplayStandingsTable table={table} />
-        </div>
-      );
+      const {
+        standings: {
+          0: { table },
+        },
+        competition: { code, name: competitionName },
+      } = standing;
+      if (code === "CL") {
+        const { standings } = standing;
+        return (
+          <div className="container table-responsive">
+            <h4
+              className="text-center blue-font my-5"
+              style={{ background: "background: rgba(202, 228, 225, 0.1)" }}
+            >
+              {competitionName}
+            </h4>
+            {standings.map((item, index) => {
+              const { group, type, table } = item;
+              if (type !== "TOTAL") {
+                return;
+              } else {
+                return (
+                  <React.Fragment key={index}>
+                    <h5
+                      className="text-center grey-font m-0"
+                      style={{
+                        background: "background: rgba(202, 228, 225, 0.1)",
+                      }}
+                    >
+                      {`Group ${group.charAt(6)}`}
+                    </h5>
+                    <DisplayStandingsTable table={table} />
+                  </React.Fragment>
+                );
+              }
+            })}
+          </div>
+        );
+      } else {
+        return (
+          <div className="container table-responsive">
+            <h4
+              className="text-center blue-font mt-2 mt-md-5"
+              style={{ background: "background: rgba(202, 228, 225, 0.1)" }}
+            >
+              {competitionName}
+            </h4>
+            <DisplayStandingsTable table={table} />
+          </div>
+        );
+      }
     }
   }
 };

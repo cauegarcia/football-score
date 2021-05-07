@@ -8,6 +8,9 @@ import Match from "../components/Match";
 import SingleCompetition from "../components/SingleCompetition";
 import SingleTeam from "../components/SingleTeam";
 import { competitions } from "../competitions";
+import { AiFillTrophy } from "react-icons/ai";
+import { RiTeamFill } from "react-icons/ri";
+import ButtonSections from "../components/ButtonSections";
 
 const Home = () => {
   const [games, setGames] = useState(null);
@@ -93,13 +96,47 @@ const Home = () => {
       }
     }
   }
-
+  const competitionRef = React.useRef();
+  const teamsRef = React.useRef();
+  const competitionTriggerRef = React.useRef();
+  const teamTriggerRef = React.useRef();
+  const showCompetitions = () => {
+    competitionRef.current.classList.toggle("show-left");
+    competitionTriggerRef.current.classList.toggle("display-trigger");
+    if (window.innerWidth < 1200)
+      teamTriggerRef.current.classList.toggle("display-trigger");
+  };
+  const showTeams = () => {
+    teamsRef.current.classList.toggle("show-right");
+    if (window.innerWidth < 1200)
+      competitionTriggerRef.current.classList.toggle("display-trigger");
+    teamTriggerRef.current.classList.toggle("display-trigger");
+  };
   return (
     <main>
+      <div className="bg-fixed"></div>
       <Router>
         <Navbar />
-        <div className="row container-xxl mx-auto d-flex justify-content-center p-1">
-          <Competitions />
+        <div
+          className="row container-xxl mx-auto d-flex justify-content-center p-1"
+          style={{
+            position: "relative",
+            overflow: "hidden",
+            minHeight: "55vh",
+          }}
+        >
+          <ButtonSections
+            triggerRef={competitionTriggerRef}
+            showDiv={showCompetitions}
+            show={"show-comp"}
+          >
+            {window.innerWidth < 768 ? "" : <p>COMPETITIONS</p>}
+            <AiFillTrophy className="trophy" />
+          </ButtonSections>
+          <Competitions
+            competitionRef={competitionRef}
+            showCompetitions={showCompetitions}
+          />
           <Route
             exact
             path="/"
@@ -119,11 +156,21 @@ const Home = () => {
             render={() => <SingleCompetition />}
           />
           <Route exact path="/team/:id" render={() => <SingleTeam />} />
+          <ButtonSections
+            triggerRef={teamTriggerRef}
+            show={"show-teams"}
+            showDiv={showTeams}
+          >
+            {window.innerWidth < 768 ? "" : <p>TEAMS</p>}
+            <RiTeamFill className="trophy" />
+          </ButtonSections>
           <Teams
             teams={teamsToDisplay}
             loading={loading}
             handleTeams={setdisplayAllTeams}
             displayAllTeams={displayAllTeams}
+            teamsRef={teamsRef}
+            showTeams={showTeams}
           />
         </div>
       </Router>

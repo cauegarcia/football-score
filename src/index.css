@@ -3,47 +3,43 @@
 
 @font-face {
   font-family: "scoreFont";
-  src: url("./Soccer\ Scoreboard.otf");
+  src: url("./assets/Soccer\ Scoreboard.otf");
 }
-
 body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("./thomas-serer-r-xKieMqL34-unsplash\ \(1\).jpg");
+    url("./assets/thomas-serer-r-xKieMqL34-unsplash\ \(1\).jpg");
   background-size: cover;
   background-attachment: fixed;
-  font-family: "Roboto", sans-serif;
+  font-family: "Barlow", sans-serif;
 }
+
 .main-col-color {
-  background: radial-gradient(
-      50% 50% at 50% 50%,
-      rgba(46, 242, 255, 0.2) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    rgba(255, 254, 254, 0.15);
-  box-shadow: 0px 4px 4px 5px rgba(125, 125, 125, 0.25);
+  background: #080808;
 }
-.graduate-font {
-  font-family: "Graduate", cursive;
+.blue-bg {
+  background: #6600ff;
+}
+.blue-font {
+  color: #6600ff;
+}
+.font-red-detail {
+  color: #db1d46;
+}
+.bg-red-detail {
+  background: #db1d46;
 }
 .neon-effect {
   color: #c6e2ff;
-  text-shadow: 0 0 6px rgba(202, 228, 225, 0.92),
-    0 0 30px rgba(202, 228, 225, 0.34), 0 0 12px rgba(30, 132, 242, 0.52),
-    0 0 21px rgba(30, 132, 242, 0.92), 0 0 34px rgba(30, 132, 242, 0.78),
-    0 0 54px rgba(30, 132, 242, 0.92);
-  transition: all 0.3s ease-in;
 }
 .text-hover-effect {
-  transition: all 0.3s ease-in;
+  transition: all 0.5s ease-in;
   cursor: pointer;
+  color: white;
 }
 .neon-effect:hover,
 .text-hover-effect:hover {
-  color: #f0f5e2;
-  text-shadow: 0 0 6px rgba(252, 251, 171, 0.92),
-    0 0 30px rgba(251, 239, 67, 0.34), 0 0 12px rgba(252, 148, 4, 0.52),
-    0 0 21px rgba(251, 126, 5, 0.92), 0 0 34px rgba(224, 89, 9, 0.78),
-    0 0 54px rgba(182, 63, 13, 0.92);
+  transform: scale(0.95);
+  color: #db1d46;
 }
 .neon-effect2 {
   color: #efc6ff;
@@ -75,4 +71,172 @@ body {
 }
 .score-font {
   font-family: "scoreFont", sans-serif;
+}
+.ind-game {
+  transition: all 0.5s ease-in;
+}
+.ind-game:hover {
+  background: rgba(222, 202, 228, 0.34);
+  opacity: 0.8;
+}
+.hidden {
+  display: block;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.5s linear;
+  position: absolute;
+}
+.main-div {
+  width: 95%;
+}
+.show {
+  width: 1%;
+  position: absolute;
+}
+.show-comp {
+  left: 0;
+}
+.show-teams {
+  right: 0;
+}
+.show,
+.show-left,
+.show-right {
+  opacity: 1;
+  overflow: visible;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.show-left {
+  left: 0 !important;
+  position: absolute;
+  width: 95%;
+  z-index: 5;
+}
+.show-right {
+  right: 0 !important;
+  position: absolute;
+  width: 95%;
+  z-index: 5;
+}
+
+.display-trigger {
+  display: none;
+}
+
+.inner-div {
+  position: fixed;
+  top: 40vh;
+  transform: translateY(-50%);
+  background: #6600ff;
+  color: white;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 2px solid white;
+  transition: all 0.5s linear;
+}
+.show-teams .inner-div {
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+.show-comp .inner-div {
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+.inner-div:hover {
+  color: #6600ff;
+  border: 5px solid #6600ff;
+  background: white;
+}
+.inner-div p {
+  margin: 0;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  display: inline;
+  transform: rotate(180deg);
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+.trophy {
+  font-size: 24px;
+}
+.competition-close-toggler,
+.team-close-toggler {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #6600ff;
+  position: absolute;
+  cursor: pointer;
+}
+.competition-close-toggler {
+  right: 1%;
+  top: 1%;
+}
+.team-close-toggler {
+  left: 1%;
+  top: 1%;
+}
+
+@media (min-width: 768px) {
+  .main-div {
+    width: 60%;
+  }
+  .hidden {
+    width: 35% !important;
+  }
+  .show {
+    width: 15%;
+    position: relative;
+  }
+  .inner-div {
+    min-height: 17vh;
+    border: 5px solid white;
+    position: absolute;
+    top: 20vh;
+    padding: 1vw;
+  }
+  .inner-div p {
+    line-height: normal;
+  }
+  .show-left {
+    position: relative;
+    z-index: 0;
+  }
+  .show-right {
+    position: relative;
+    z-index: 0;
+  }
+  .competition-close-toggler {
+    right: -10%;
+    top: 50%;
+  }
+  .team-close-toggler {
+    left: -10%;
+    top: 50%;
+  }
+  .competition-close-toggler,
+  .team-close-toggler {
+    background: #db1d46;
+  }
+  .trophy {
+    font-size: 5vw;
+  }
+  .show-teams .inner-div,
+  .show-comp .inner-div {
+    border-radius: 0;
+  }
+}
+@media (min-width: 1200px) and (orientation: landscape) {
+  .hidden {
+    width: 25% !important;
+  }
+  .main-div {
+    width: 50%;
+  }
 }
