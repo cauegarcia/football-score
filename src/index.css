@@ -240,3 +240,48 @@ body {
     width: 50%;
   }
 }
+.searchWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 50px;
+  z-index: 5;
+}
+.inputTeam {
+  padding: 10px;
+  width: 250px;
+  background: #080808;
+  border: 1px solid #6600ff;
+  color: white;
+}
+.searchButton {
+  background: #6600ff;
+  position: relative;
+  left: -5%;
+}
+.teamSelectorWrapper {
+  position: absolute;
+  left: 0;
+  top: 50px;
+  width: 250px;
+}
+.teamSelect {
+  background: #080808;
+  cursor: pointer;
+  padding: 5px 10px;
+  color: white;
+  border: 1px solid #6600ff;
+}
+.clearButton {
+  position: absolute;
+  left: 200px;
+  height: 100%;
+  width: 35px;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+}
