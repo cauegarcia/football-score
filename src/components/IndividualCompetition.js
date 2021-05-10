@@ -1,7 +1,14 @@
 import React from "react";
 import IndividualGame from "./IndividualGame";
 
-const IndividualCompetition = ({ competition, page, games }) => {
+const IndividualCompetition = ({
+  competition,
+  page,
+  games,
+  modalOpen,
+  setModalOpen,
+  setModalDetails,
+}) => {
   return (
     <>
       <div
@@ -22,7 +29,15 @@ const IndividualCompetition = ({ competition, page, games }) => {
       </div>
       <div>
         {games[page][competition].map((match) => {
-          return <IndividualGame key={match.id} match={match} />;
+          return (
+            <IndividualGame
+              key={match.id}
+              match={match}
+              modalOpen={modalOpen}
+              setModalOpen={setModalOpen}
+              setModalDetails={setModalDetails}
+            />
+          );
         })}
       </div>
     </>

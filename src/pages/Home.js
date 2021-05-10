@@ -7,6 +7,7 @@ import Games from "../components/Games";
 import Match from "../components/Match";
 import SingleCompetition from "../components/SingleCompetition";
 import SingleTeam from "../components/SingleTeam";
+import ReminderModal from "../components/ReminderModal";
 import { competitions } from "../competitions";
 import { AiFillTrophy } from "react-icons/ai";
 import { RiTeamFill } from "react-icons/ri";
@@ -18,6 +19,8 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [teams, setTeams] = useState(null);
   const [displayAllTeams, setdisplayAllTeams] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalDetail, setModalDetails] = useState(null);
 
   const getGames = async () => {
     try {
@@ -112,6 +115,7 @@ const Home = () => {
       competitionTriggerRef.current.classList.toggle("display-trigger");
     teamTriggerRef.current.classList.toggle("display-trigger");
   };
+
   return (
     <main>
       <div className="bg-fixed"></div>
@@ -130,7 +134,7 @@ const Home = () => {
             showDiv={showCompetitions}
             show={"show-comp"}
           >
-            {window.innerWidth < 768 ? "" : <p>COMPETITIONS</p>}
+            <p className="d-none d-md-block">COMPETITIONS</p>
             <AiFillTrophy className="trophy" />
           </ButtonSections>
           <Competitions
@@ -146,6 +150,9 @@ const Home = () => {
                 page={page}
                 loading={loading}
                 setPage={setPage}
+                modalOpen={modalOpen}
+                setModalOpen={setModalOpen}
+                setModalDetails={setModalDetails}
               />
             )}
           />
@@ -155,13 +162,23 @@ const Home = () => {
             path="/competition/:id"
             render={() => <SingleCompetition />}
           />
-          <Route exact path="/team/:id" render={() => <SingleTeam />} />
+          <Route
+            exact
+            path="/team/:id"
+            render={() => (
+              <SingleTeam
+                modalOpen={modalOpen}
+                setModalOpen={setModalOpen}
+                setModalDetails={setModalDetails}
+              />
+            )}
+          />
           <ButtonSections
             triggerRef={teamTriggerRef}
             show={"show-teams"}
             showDiv={showTeams}
           >
-            {window.innerWidth < 768 ? "" : <p>TEAMS</p>}
+            <p className="d-none d-md-block">TEAMS</p>
             <RiTeamFill className="trophy" />
           </ButtonSections>
           <Teams
@@ -174,6 +191,9 @@ const Home = () => {
           />
         </div>
       </Router>
+      {modalOpen && (
+        <ReminderModal setModalOpen={setModalOpen} match={modalDetail} />
+      )}
     </main>
   );
 };

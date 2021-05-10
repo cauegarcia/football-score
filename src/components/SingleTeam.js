@@ -4,7 +4,7 @@ import loadingLogo from "../assets/loading.gif";
 import IndividualGame from "./IndividualGame";
 import IndividualPlayer from "./IndividualPlayer";
 
-const SingleTeam = () => {
+const SingleTeam = ({ modalOpen, setModalOpen, setModalDetails }) => {
   const { id } = useParams();
   const [team, setTeam] = useState(null);
   const [matches, setMatches] = useState(null);
@@ -238,7 +238,13 @@ const SingleTeam = () => {
                         let matchDate = match.utcDate.split("T")[0].split("-");
                         matchDate = matchDate[2] + "/" + matchDate[1];
                         return (
-                          <IndividualGame key={match.id} match={match}>
+                          <IndividualGame
+                            key={match.id}
+                            match={match}
+                            modalOpen={modalOpen}
+                            setModalOpen={setModalOpen}
+                            setModalDetails={setModalDetails}
+                          >
                             {<h6 className="m-0 grey-font">{matchDate}</h6>}
                           </IndividualGame>
                         );

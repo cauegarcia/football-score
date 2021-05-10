@@ -110,13 +110,15 @@ body {
 }
 .show-left {
   left: 0 !important;
-  position: absolute;
+  top: 5px !important;
+  position: fixed;
   width: 95%;
   z-index: 5;
 }
 .show-right {
   right: 0 !important;
-  position: absolute;
+  top: 5px !important;
+  position: fixed;
   width: 95%;
   z-index: 5;
 }
@@ -183,63 +185,6 @@ body {
   top: 1%;
 }
 
-@media (min-width: 768px) {
-  .main-div {
-    width: 60%;
-  }
-  .hidden {
-    width: 35% !important;
-  }
-  .show {
-    width: 15%;
-    position: relative;
-  }
-  .inner-div {
-    min-height: 17vh;
-    border: 5px solid white;
-    position: absolute;
-    top: 20vh;
-    padding: 1vw;
-  }
-  .inner-div p {
-    line-height: normal;
-  }
-  .show-left {
-    position: relative;
-    z-index: 0;
-  }
-  .show-right {
-    position: relative;
-    z-index: 0;
-  }
-  .competition-close-toggler {
-    right: -10%;
-    top: 50%;
-  }
-  .team-close-toggler {
-    left: -10%;
-    top: 50%;
-  }
-  .competition-close-toggler,
-  .team-close-toggler {
-    background: #db1d46;
-  }
-  .trophy {
-    font-size: 5vw;
-  }
-  .show-teams .inner-div,
-  .show-comp .inner-div {
-    border-radius: 0;
-  }
-}
-@media (min-width: 1200px) and (orientation: landscape) {
-  .hidden {
-    width: 25% !important;
-  }
-  .main-div {
-    width: 50%;
-  }
-}
 .searchWrapper {
   display: flex;
   align-items: center;
@@ -284,4 +229,90 @@ body {
   justify-content: center;
   cursor: pointer;
   color: white;
+}
+.reminder-modal {
+  position: fixed;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  background: #080808;
+  color: #6600ff;
+  padding: 2rem 1rem;
+  border: 2px solid #6600ff;
+  max-width: 350px;
+}
+.reminder-modal h4 {
+  margin-top: 5vh;
+}
+.reminder-modal p {
+  color: white;
+}
+.close-modal {
+  position: absolute;
+  top: 2vh;
+  right: 3vw;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .main-div {
+    width: 60%;
+  }
+  .hidden {
+    width: 35% !important;
+  }
+  .show {
+    width: 15%;
+    position: relative;
+  }
+  .inner-div {
+    min-height: 17vh;
+    border: 5px solid white;
+    position: absolute;
+    top: 20vh;
+    padding: 1vw;
+  }
+  .inner-div p {
+    line-height: normal;
+  }
+  .show-left {
+    position: relative;
+    top: 0;
+    z-index: 0;
+  }
+  .show-right {
+    position: relative;
+    top: 0;
+    z-index: 0;
+  }
+  .competition-close-toggler {
+    right: -10%;
+    top: 50%;
+  }
+  .team-close-toggler {
+    left: -10%;
+    top: 50%;
+  }
+  .competition-close-toggler,
+  .team-close-toggler {
+    background: #db1d46;
+  }
+  .trophy {
+    font-size: 5vw;
+  }
+  .show-teams .inner-div,
+  .show-comp .inner-div {
+    border-radius: 0;
+  }
+}
+@media (min-width: 1200px) and (orientation: landscape) {
+  .hidden {
+    width: 25% !important;
+  }
+  .main-div {
+    width: 50%;
+  }
 }

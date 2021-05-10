@@ -3,7 +3,15 @@ import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import loadingLogo from "../assets/loading.gif";
 import IndividualCompetition from "./IndividualCompetition";
 
-const Games = ({ games, loading, page, setPage }) => {
+const Games = ({
+  games,
+  loading,
+  page,
+  setPage,
+  modalOpen,
+  setModalOpen,
+  setModalDetails,
+}) => {
   if (loading) {
     return (
       <div className="col-md-8 col-xl-6 p-0 m-1 main-col-color d-flex justify-content-center">
@@ -74,6 +82,9 @@ const Games = ({ games, loading, page, setPage }) => {
                     competition={competition}
                     games={games}
                     page={page}
+                    modalOpen={modalOpen}
+                    setModalOpen={setModalOpen}
+                    setModalDetails={setModalDetails}
                   ></IndividualCompetition>
                 );
               }

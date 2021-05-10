@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ReminderButton from "./ReminderButton";
 
-const IndividualGame = ({ match, children }) => {
+const IndividualGame = ({
+  match,
+  children,
+  modalOpen,
+  setModalOpen,
+  setModalDetails,
+}) => {
   const {
     status,
     utcDate,
@@ -22,11 +29,10 @@ const IndividualGame = ({ match, children }) => {
   matchHour = `${matchHour[0]}:${matchHour[1]}`;
 
   return (
-    <Link
-      to={`/match/${id}`}
+    <div
       key={id}
       style={{ borderBottom: "1px solid #6600FF" }}
-      className="d-block text-reset text-decoration-none ind-game px-2"
+      className=" px-2"
     >
       <article className="py-2">
         <div className="row p-0 ps-md-1 ps-md-2 container-fluid m-0">
@@ -36,8 +42,8 @@ const IndividualGame = ({ match, children }) => {
                 ? "grey-font col-3 col-md-2 my-auto p-0 me-2"
                 : status === "IN_PLAY" || status === "PAUSED"
                 ? "fw-bold font-red-detail col-3 col-md-2 my-auto p-0 me-2"
-                : "grey-font col-3 col-md-2 my-auto p-0 me-2"
-            }`}
+                : "grey-font col-3 col-md-1 my-auto p-0 me-2"
+            } d-flex flex-column align-items-center justify-content-center`}
           >
             {children}
             {status === "FINISHED"
@@ -49,8 +55,23 @@ const IndividualGame = ({ match, children }) => {
               : status === "PAUSED"
               ? "Interval"
               : matchHour}
+            {status === "SCHEDULED" ? (
+              <span className="d-md-none">
+                <ReminderButton
+                  match={match}
+                  modalOpen={modalOpen}
+                  setModalOpen={setModalOpen}
+                  setModalDetails={setModalDetails}
+                />
+              </span>
+            ) : (
+              ""
+            )}
           </div>
-          <div className="col d-md-flex p-1 ">
+          <Link
+            to={`/match/${id}`}
+            className="col d-md-flex p-1 d-block text-reset text-decoration-none ind-game "
+          >
             <div className="row container-fluid p-0 justify-content-between align-items-center">
               <div className="col-10 col-md p-0 py-1 px-md-1 graduate-font text-light text-md-end">
                 {home}
@@ -85,10 +106,22 @@ const IndividualGame = ({ match, children }) => {
                 {scoreAwayFull}
               </div>
             </div>
-          </div>
+          </Link>
+          {status === "SCHEDULED" ? (
+            <span className="d-none d-md-block col-2 p-0 my-auto">
+              <ReminderButton
+                match={match}
+                modalOpen={modalOpen}
+                setModalOpen={setModalOpen}
+                setModalDetails={setModalDetails}
+              />
+            </span>
+          ) : (
+            ""
+          )}
         </div>
       </article>
-    </Link>
+    </div>
   );
 };
 
