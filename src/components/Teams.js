@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import loadingLogo from "../assets/loading.gif";
 import IndividualTeam from "./IndividualTeam";
 import { BiRightArrow } from "react-icons/bi";

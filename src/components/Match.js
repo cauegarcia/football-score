@@ -16,7 +16,9 @@ const Match = () => {
         const response = await fetch(
           `https://api.football-data.org/v2/matches/${id}`,
           {
-            headers: { "X-Auth-Token": "7f152a313b784b0eac60f4d7d6f81e57" },
+            headers: {
+              "X-Auth-Token": `${process.env.REACT_APP_FOOTBALL_API_KEY}`,
+            },
           }
         );
         const matchDetails = await response.json();
@@ -36,7 +38,9 @@ const Match = () => {
       const response = await fetch(
         `https://api.football-data.org/v2/teams/${teamId}`,
         {
-          headers: { "X-Auth-Token": "7f152a313b784b0eac60f4d7d6f81e57" },
+          headers: {
+            "X-Auth-Token": `${process.env.REACT_APP_FOOTBALL_API_KEY}`,
+          },
         }
       );
       const matchDetails = await response.json();

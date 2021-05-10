@@ -33,7 +33,9 @@ const Home = () => {
       const response = await fetch(
         `https://api.football-data.org/v2/matches?dateFrom=${firstDay}&dateTo=${lastDay}`,
         {
-          headers: { "X-Auth-Token": "7f152a313b784b0eac60f4d7d6f81e57" },
+          headers: {
+            "X-Auth-Token": `${process.env.REACT_APP_FOOTBALL_API_KEY}`,
+          },
         }
       );
       const games = await response.json();
@@ -68,7 +70,9 @@ const Home = () => {
   const getTeams = async (url) => {
     try {
       const response = await fetch(url, {
-        headers: { "X-Auth-Token": "7f152a313b784b0eac60f4d7d6f81e57" },
+        headers: {
+          "X-Auth-Token": `${process.env.REACT_APP_FOOTBALL_API_KEY}`,
+        },
       });
       const clTeams = await response.json();
       const { teams } = clTeams;

@@ -48,8 +48,7 @@ const ReminderModal = ({ setModalOpen, match }) => {
         }
       }
     }
-    const API_URL =
-      "https://mue67m8nj6.execute-api.sa-east-1.amazonaws.com/live/reminder";
+    const API_URL = `${process.env.REACT_APP_API_GATEWAY}`;
     const body = {
       date: `${utcDate.split("T")[0]}`,
       hour: `${hourToRemind}`,

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import DisplayCompetitionsLinks from "./DisplayCompetitionsLinks";
 import AutoSuggest from "./AutoSuggest";
 
 const Navbar = () => {

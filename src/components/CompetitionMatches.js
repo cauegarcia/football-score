@@ -10,7 +10,9 @@ const CompetitionMatches = ({ competitionId }) => {
       const response = await fetch(
         `https://api.football-data.org/v2/competitions/${competitionId}/matches`,
         {
-          headers: { "X-Auth-Token": "7f152a313b784b0eac60f4d7d6f81e57" },
+          headers: {
+            "X-Auth-Token": `${process.env.REACT_APP_FOOTBALL_API_KEY}`,
+          },
         }
       );
       const data = await response.json();

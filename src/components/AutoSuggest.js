@@ -21,7 +21,6 @@ const getSuggestions = (value) => {
 const AutoSuggest = () => {
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [checkedValue, setCheckedValue] = useState([]);
   const handleChange = (e) => {
     setValue(e.target.value);
   };
