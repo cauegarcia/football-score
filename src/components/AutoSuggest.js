@@ -35,13 +35,11 @@ const AutoSuggest = () => {
     onSuggestionsClearRequested();
   };
   const checkValue = () => {
-    console.log(teams.some((team) => team.name === value));
     return teams.some((team) => team.name === value);
   };
   useEffect(() => {
     if (value.length === 0) return onSuggestionsClearRequested();
     if (value.trim().length > 0) {
-      console.log(value);
       onSuggestionsFetchRequested(value);
     }
   }, [value]);

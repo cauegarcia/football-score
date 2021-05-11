@@ -29,7 +29,6 @@ const ReminderModal = ({ setModalOpen, match }) => {
     const hourAndMinutes = utcDate.split("T")[1].slice(0, 5);
     const minutes = hourAndMinutes.slice(3);
     const hours = hourAndMinutes.slice(0, 2);
-    console.log(minutesBefore);
     if (minutesBefore === "15") {
       if (parseInt(minutes) === 0) {
         hourToRemind = `${parseInt(hours) - 1}:45:00Z`;
@@ -63,7 +62,8 @@ const ReminderModal = ({ setModalOpen, match }) => {
       mode: "cors",
       credentials: "include",
       headers: {
-        "Content-type": "application/json",
+        "Content-type": "application/x-www-form-urlencoded",
+        Origin: "https://footballscore-reminder.netlify.app/",
       },
       body: JSON.stringify(body),
     };
@@ -80,7 +80,6 @@ const ReminderModal = ({ setModalOpen, match }) => {
     setTimeout(() => {
       setModalOpen(false);
     }, 2500);
-    console.log(params);
     return sendRequest();
   };
   return (
