@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import IndividualGame from "./IndividualGame";
 
 const CompetitionMatches = ({ competitionId }) => {
   const [rounds, setRounds] = useState(null);
   const [loading, setLoading] = useState(true);
-  const getRounds = async () => {
-    try {
-      const response = await fetch(
-        `https://api.football-data.org/v2/competitions/${competitionId}/matches`,
-        {
-          headers: {
-            "X-Auth-Token": `${process.env.REACT_APP_FOOTBALL_API_KEY}`,
-          },
-        }
-      );
-      const data = await response.json();
-      if (data) {
-        setLoading(false, setRounds(data));
-      } else {
-        setRounds(null);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+
   useEffect(() => {
     setLoading(true);
+    const getRounds = async () => {
+      try {
+        const response = await fetch(
+          `https://api.football-data.org/v2/competitions/${competitionId}/matches`,
+          {
+            headers: {
+              "X-Auth-Token": `${process.env.REACT_APP_FOOTBALL_API_KEY}`,
+            },
+          }
+        );
+        const data = await response.json();
+        if (data) {
+          setLoading(false, setRounds(data));
+        } else {
+          setRounds(null);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
     getRounds();
   }, [competitionId]);
   if (loading) {
@@ -73,7 +73,7 @@ const CompetitionMatches = ({ competitionId }) => {
         >
           Fixtures
         </h4>
-        {Object.keys(allRounds).map((round, index) => {
+        {Object.keys(allRounds).forEach((round, index) => {
           if (allRounds[round].length > 0) {
             return (
               <div className="container-fluid p-0" key={index}>
@@ -156,7 +156,7 @@ const CompetitionMatches = ({ competitionId }) => {
         >
           Fixtures
         </h4>
-        {Object.keys(allRounds).map((round, index) => {
+        {Object.keys(allRounds).forEach((round, index) => {
           if (allRounds[round].length > 0) {
             return (
               <div className="container-fluid p-0" key={index}>

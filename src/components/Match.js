@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Standings from "../components/Standings";
 import loadingLogo from "../assets/loading.gif";
@@ -32,7 +32,7 @@ const Match = () => {
       }
     };
     getMatch();
-  }, []);
+  }, [id]);
   const getClub = async (teamId, team) => {
     try {
       const response = await fetch(
@@ -80,25 +80,26 @@ const Match = () => {
       } = match;
       getClub(teamId, "away");
     }
-  }, [clubHome]);
+  }, [clubHome, match]);
   useEffect(() => {
     if (clubAway) {
       setLoading(false);
     }
   }, [clubAway]);
+  const toggleLoader = useCallback(() => {
+    if (loading) {
+      setLoading(false);
+    }
+  }, [loading]);
   useEffect(() => {
-    const toggleLoader = () => {
-      if (loading) {
-        setLoading(false);
-      }
-    };
+    console.log("logging...");
     let timer = setTimeout(() => {
       toggleLoader();
     }, 5000);
     return () => {
       clearTimeout(timer);
     };
-  }, []);
+  }, [loading, toggleLoader]);
   if (loading) {
     return (
       <div className="col-md-8 col-xl-6 p-0 m-1 main-col-color d-flex justify-content-center">

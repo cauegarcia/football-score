@@ -9,50 +9,51 @@ const SingleTeam = ({ modalOpen, setModalOpen, setModalDetails }) => {
   const [team, setTeam] = useState(null);
   const [matches, setMatches] = useState(null);
   const [loading, setLoading] = useState(true);
-  const getTeam = async () => {
-    try {
-      const response = await fetch(
-        `https://api.football-data.org/v2/teams/${id}`,
-        {
-          headers: {
-            "X-Auth-Token": `${process.env.REACT_APP_FOOTBALL_API_KEY}`,
-          },
-        }
-      );
-      const data = await response.json();
-      console.log(data);
-      if (data) {
-        setTeam(data);
-      } else {
-        setTeam(null);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  const getMatches = async () => {
-    try {
-      const response = await fetch(
-        `https://api.football-data.org/v2/teams/${id}/matches/`,
-        {
-          headers: {
-            "X-Auth-Token": `${process.env.REACT_APP_FOOTBALL_API_KEY}`,
-          },
-        }
-      );
-      const data = await response.json();
-      const { matches } = data;
-      if (data) {
-        setLoading(false, setMatches(matches));
-      } else {
-        setMatches(null);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+
   useEffect(() => {
     setLoading(true);
+    const getTeam = async () => {
+      try {
+        const response = await fetch(
+          `https://api.football-data.org/v2/teams/${id}`,
+          {
+            headers: {
+              "X-Auth-Token": `${process.env.REACT_APP_FOOTBALL_API_KEY}`,
+            },
+          }
+        );
+        const data = await response.json();
+        console.log(data);
+        if (data) {
+          setTeam(data);
+        } else {
+          setTeam(null);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    const getMatches = async () => {
+      try {
+        const response = await fetch(
+          `https://api.football-data.org/v2/teams/${id}/matches/`,
+          {
+            headers: {
+              "X-Auth-Token": `${process.env.REACT_APP_FOOTBALL_API_KEY}`,
+            },
+          }
+        );
+        const data = await response.json();
+        const { matches } = data;
+        if (data) {
+          setLoading(false, setMatches(matches));
+        } else {
+          setMatches(null);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
     getTeam();
     getMatches();
   }, [id]);
@@ -222,7 +223,7 @@ const SingleTeam = ({ modalOpen, setModalOpen, setModalDetails }) => {
               role="tabpanel"
               aria-labelledby="matches-tab"
             >
-              {Object.keys(fixtures).map((round, index) => {
+              {Object.keys(fixtures).forEach((round, index) => {
                 if (fixtures[round].length > 0) {
                   return (
                     <div className="container-fluid p-0" key={index}>
