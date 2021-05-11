@@ -23,7 +23,6 @@ const SingleTeam = ({ modalOpen, setModalOpen, setModalDetails }) => {
           }
         );
         const data = await response.json();
-        console.log(data);
         if (data) {
           setTeam(data);
         } else {
@@ -223,7 +222,7 @@ const SingleTeam = ({ modalOpen, setModalOpen, setModalDetails }) => {
               role="tabpanel"
               aria-labelledby="matches-tab"
             >
-              {Object.keys(fixtures).forEach((round, index) => {
+              {Object.keys(fixtures).map((round, index) => {
                 if (fixtures[round].length > 0) {
                   return (
                     <div className="container-fluid p-0" key={index}>

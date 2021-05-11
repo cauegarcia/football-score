@@ -92,7 +92,6 @@ const Match = () => {
     }
   }, [loading]);
   useEffect(() => {
-    console.log("logging...");
     let timer = setTimeout(() => {
       toggleLoader();
     }, 5000);

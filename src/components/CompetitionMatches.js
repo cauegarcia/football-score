@@ -73,7 +73,7 @@ const CompetitionMatches = ({ competitionId }) => {
         >
           Fixtures
         </h4>
-        {Object.keys(allRounds).forEach((round, index) => {
+        {Object.keys(allRounds).map((round, index) => {
           if (allRounds[round].length > 0) {
             return (
               <div className="container-fluid p-0" key={index}>
@@ -156,7 +156,7 @@ const CompetitionMatches = ({ competitionId }) => {
         >
           Fixtures
         </h4>
-        {Object.keys(allRounds).forEach((round, index) => {
+        {Object.keys(allRounds).map((round, index) => {
           if (allRounds[round].length > 0) {
             return (
               <div className="container-fluid p-0" key={index}>

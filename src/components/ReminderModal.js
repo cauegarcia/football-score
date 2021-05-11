@@ -60,6 +60,8 @@ const ReminderModal = ({ setModalOpen, match }) => {
 
     const params = {
       method: "POST",
+      mode: "cors",
+      credentials: "include",
       headers: {
         "Content-type": "application/json",
       },
