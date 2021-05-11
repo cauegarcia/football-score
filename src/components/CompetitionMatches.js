@@ -74,39 +74,37 @@ const CompetitionMatches = ({ competitionId }) => {
           Fixtures
         </h4>
         {Object.keys(allRounds).map((round, index) => {
-          if (allRounds[round].length > 0) {
-            return (
-              <div className="container-fluid p-0" key={index}>
-                <h5
-                  className="text-center grey-font m-0 mt-5"
-                  style={{
-                    background: "background: rgba(202, 228, 225, 0.1)",
-                  }}
-                >
-                  {round === "today"
-                    ? `Today's Matches`
-                    : round === "final"
-                    ? "Final"
-                    : round === "semiFinals"
-                    ? "Semi-finals"
-                    : round === "quarterFinals"
-                    ? "Quarter-finals"
-                    : "Round of 16"}
-                </h5>
-                {allRounds[round].map((match) => {
-                  let matchDate = match.utcDate.split("T")[0].split("-");
-                  matchDate = matchDate[2] + "/" + matchDate[1];
-                  return (
-                    <IndividualGame key={match.id} match={match}>
-                      {<h6 className="m-0 grey-font">{matchDate}</h6>}
-                    </IndividualGame>
-                  );
-                })}
-              </div>
-            );
-          } else {
-            return;
-          }
+          return allRounds[round].length > 0 ? (
+            <div className="container-fluid p-0" key={index}>
+              <h5
+                className="text-center grey-font m-0 mt-5"
+                style={{
+                  background: "background: rgba(202, 228, 225, 0.1)",
+                }}
+              >
+                {round === "today"
+                  ? `Today's Matches`
+                  : round === "final"
+                  ? "Final"
+                  : round === "semiFinals"
+                  ? "Semi-finals"
+                  : round === "quarterFinals"
+                  ? "Quarter-finals"
+                  : "Round of 16"}
+              </h5>
+              {allRounds[round].map((match) => {
+                let matchDate = match.utcDate.split("T")[0].split("-");
+                matchDate = matchDate[2] + "/" + matchDate[1];
+                return (
+                  <IndividualGame key={match.id} match={match}>
+                    {<h6 className="m-0 grey-font">{matchDate}</h6>}
+                  </IndividualGame>
+                );
+              })}
+            </div>
+          ) : (
+            ""
+          );
         })}
       </div>
     );
@@ -157,37 +155,35 @@ const CompetitionMatches = ({ competitionId }) => {
           Fixtures
         </h4>
         {Object.keys(allRounds).map((round, index) => {
-          if (allRounds[round].length > 0) {
-            return (
-              <div className="container-fluid p-0" key={index}>
-                <h5
-                  className="text-center grey-font m-0 mt-5"
-                  style={{
-                    background: "background: rgba(202, 228, 225, 0.1)",
-                  }}
-                >
-                  {round === "0"
-                    ? "Today's matches"
-                    : round === "1"
-                    ? "Current Round (Round " + currentRound + ")"
-                    : round === "2"
-                    ? "Next Round (Round " + (currentRound + 1) + ")"
-                    : "Last Round (Round " + (currentRound - 1) + ")"}
-                </h5>
-                {allRounds[round].map((match) => {
-                  let matchDate = match.utcDate.split("T")[0].split("-");
-                  matchDate = matchDate[2] + "/" + matchDate[1];
-                  return (
-                    <IndividualGame key={match.id} match={match}>
-                      {<h6 className="m-0 grey-font">{matchDate}</h6>}
-                    </IndividualGame>
-                  );
-                })}
-              </div>
-            );
-          } else {
-            return;
-          }
+          return allRounds[round].length > 0 ? (
+            <div className="container-fluid p-0" key={index}>
+              <h5
+                className="text-center grey-font m-0 mt-5"
+                style={{
+                  background: "background: rgba(202, 228, 225, 0.1)",
+                }}
+              >
+                {round === "0"
+                  ? "Today's matches"
+                  : round === "1"
+                  ? "Current Round (Round " + currentRound + ")"
+                  : round === "2"
+                  ? "Next Round (Round " + (currentRound + 1) + ")"
+                  : "Last Round (Round " + (currentRound - 1) + ")"}
+              </h5>
+              {allRounds[round].map((match) => {
+                let matchDate = match.utcDate.split("T")[0].split("-");
+                matchDate = matchDate[2] + "/" + matchDate[1];
+                return (
+                  <IndividualGame key={match.id} match={match}>
+                    {<h6 className="m-0 grey-font">{matchDate}</h6>}
+                  </IndividualGame>
+                );
+              })}
+            </div>
+          ) : (
+            ""
+          );
         })}
       </div>
     );

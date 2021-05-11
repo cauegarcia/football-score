@@ -223,39 +223,39 @@ const SingleTeam = ({ modalOpen, setModalOpen, setModalDetails }) => {
               aria-labelledby="matches-tab"
             >
               {Object.keys(fixtures).map((round, index) => {
-                if (fixtures[round].length > 0) {
-                  return (
-                    <div className="container-fluid p-0" key={index}>
-                      <h5
-                        className="text-center grey-font m-0 mt-2"
-                        style={{
-                          background: "background: rgba(202, 228, 225, 0.1)",
-                        }}
-                      >
-                        {round === "today"
-                          ? "Today's matches"
-                          : round === "nextGames"
-                          ? "Next Games"
-                          : "Last Games"}
-                      </h5>
-                      {fixtures[round].map((match) => {
-                        let matchDate = match.utcDate.split("T")[0].split("-");
-                        matchDate = matchDate[2] + "/" + matchDate[1];
-                        return (
-                          <IndividualGame
-                            key={match.id}
-                            match={match}
-                            modalOpen={modalOpen}
-                            setModalOpen={setModalOpen}
-                            setModalDetails={setModalDetails}
-                          >
-                            {<h6 className="m-0 grey-font">{matchDate}</h6>}
-                          </IndividualGame>
-                        );
-                      })}
-                    </div>
-                  );
-                }
+                return fixtures[round].length > 0 ? (
+                  <div className="container-fluid p-0" key={index}>
+                    <h5
+                      className="text-center grey-font m-0 mt-2"
+                      style={{
+                        background: "background: rgba(202, 228, 225, 0.1)",
+                      }}
+                    >
+                      {round === "today"
+                        ? "Today's matches"
+                        : round === "nextGames"
+                        ? "Next Games"
+                        : "Last Games"}
+                    </h5>
+                    {fixtures[round].map((match) => {
+                      let matchDate = match.utcDate.split("T")[0].split("-");
+                      matchDate = matchDate[2] + "/" + matchDate[1];
+                      return (
+                        <IndividualGame
+                          key={match.id}
+                          match={match}
+                          modalOpen={modalOpen}
+                          setModalOpen={setModalOpen}
+                          setModalDetails={setModalDetails}
+                        >
+                          {<h6 className="m-0 grey-font">{matchDate}</h6>}
+                        </IndividualGame>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  ""
+                );
               })}
             </div>
             <div
