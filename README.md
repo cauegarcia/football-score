@@ -9,7 +9,7 @@
 </p>
 <h1 align="center">Football Score</h1>
 <p align="center">A web app that provides results and fixtures of main european football leagues.</p>
-<p>This is a project of a a web app integrated with an external API - https://www.football-data.org/, exclusively created for the purpose of demonstrating knowledge in the basic front-end languages.</p>
+<p>This is a project of a web app integrated with an external API - https://www.football-data.org/, exclusively created for the purpose of demonstrating knowledge in the basic front-end languages.</p>
 <p>The page is built with React using hooks. <br>
   UseState, useEffect, useRef were used to build the interactions and actions within the pages.<br>
   The single-page navigation is controlled by React Router system which allows easy page changing without refreshing the browser.<br>
