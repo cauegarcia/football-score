@@ -58,7 +58,7 @@ const Games = ({
               setPage(page - 1 > -4 ? page - 1 : -4);
             }}
           >
-            <BiLeftArrow />
+            {page === -4 ? "" : <BiLeftArrow />}
           </button>{" "}
           <h4 className="m-0 graduate-font text-light py-2">{getCalendar()}</h4>
           <button
@@ -67,7 +67,7 @@ const Games = ({
               setPage(page + 1 < 5 ? page + 1 : 5);
             }}
           >
-            <BiRightArrow />
+            {page === 5 ? "" : <BiRightArrow />}
           </button>
         </div>
         <div className="container-fluid main-col-color p-0">

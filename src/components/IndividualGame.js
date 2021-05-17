@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ReminderButton from "./ReminderButton";
+/* import ReminderButton from "./ReminderButton"; */
 
 const IndividualGame = ({
   match,
   children,
-  modalOpen,
+  /* modalOpen,
   setModalOpen,
-  setModalDetails,
+  setModalDetails, */
 }) => {
   const {
     status,
@@ -39,10 +39,10 @@ const IndividualGame = ({
           <div
             className={`${
               status === "FINISHED"
-                ? "grey-font col-3 col-md-2 my-auto p-0 me-2"
+                ? "grey-font col-2 col-md-2 my-auto p-0 me-2"
                 : status === "IN_PLAY" || status === "PAUSED"
-                ? "fw-bold font-red-detail col-3 col-md-2 my-auto p-0 me-2"
-                : "grey-font col-3 col-md-1 my-auto p-0 me-2"
+                ? "fw-bold font-red-detail col-2 col-md-2 my-auto p-0 me-2"
+                : "grey-font col-2 col-md-1 my-auto p-0 me-2"
             } d-flex flex-column align-items-center justify-content-center`}
           >
             {children}
@@ -55,7 +55,7 @@ const IndividualGame = ({
               : status === "PAUSED"
               ? "Interval"
               : matchHour}
-            {status === "SCHEDULED" ? (
+            {/* {status === "SCHEDULED" ? (
               <span className="d-md-none">
                 <ReminderButton
                   match={match}
@@ -66,14 +66,14 @@ const IndividualGame = ({
               </span>
             ) : (
               ""
-            )}
+            )} */}
           </div>
           <Link
             to={`/match/${id}`}
             className="col d-md-flex p-1 d-block text-reset text-decoration-none ind-game "
           >
-            <div className="row container-fluid p-0 justify-content-between align-items-center">
-              <div className="col-10 col-md p-0 py-1 px-md-1 graduate-font text-light text-md-end">
+            <div className="row container-fluid p-0 justify-content-between align-items-center m-0">
+              <div className="col-10 col-md p-0 py-1 px-md-1 graduate-font text-light text-md-end ms-1 ms-md-0">
                 {home}
               </div>
               <div
@@ -92,8 +92,8 @@ const IndividualGame = ({
             >
               X
             </div>
-            <div className="row container-fluid p-0 d-md-flex flex-md-row-reverse justify-content-between align-items-center">
-              <div className="col-10 col-md py-1 p-0 px-md-1 graduate-font text-light pe-md-2 text-md-start">
+            <div className="row container-fluid p-0 d-md-flex flex-md-row-reverse justify-content-between align-items-center m-0">
+              <div className="col-10 col-md py-1 p-0 px-md-1 graduate-font text-light pe-md-2 text-md-start ms-1 ms-md-0">
                 {away}
               </div>
               <div
@@ -107,7 +107,7 @@ const IndividualGame = ({
               </div>
             </div>
           </Link>
-          {status === "SCHEDULED" ? (
+          {/*  {status === "SCHEDULED" ? (
             <span className="d-none d-md-block col-2 p-0 my-auto">
               <ReminderButton
                 match={match}
@@ -118,7 +118,7 @@ const IndividualGame = ({
             </span>
           ) : (
             ""
-          )}
+          )} */}
         </div>
       </article>
     </div>

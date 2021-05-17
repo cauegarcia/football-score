@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+/* import AWS from "aws-sdk"; */
+/* const sgMail = require("@sendgrid/mail"); */
 
 const ReminderModal = ({ setModalOpen, match }) => {
   const {
@@ -8,7 +10,7 @@ const ReminderModal = ({ setModalOpen, match }) => {
     utcDate,
   } = match;
 
-  const [message, setMessage] = React.useState(null);
+  /* const [message, setMessage] = React.useState(null); */
   const userEmailRef = useRef("cauegmoyano@gmail.com");
   const minutesRef = useRef("0");
   const rawDate = new Date(utcDate);
@@ -18,36 +20,81 @@ const ReminderModal = ({ setModalOpen, match }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let minutesBefore = "";
-    if (minutesRef.current.value === "At the kickoff") {
-      minutesBefore = "0";
-    } else {
-      minutesBefore = minutesRef.current.value;
-    }
-    let hourToRemind = "";
-    if (minutesBefore === "0") hourToRemind = utcDate.split("T")[1];
-    const hourAndMinutes = utcDate.split("T")[1].slice(0, 5);
+    /*  let minutesBefore = ""; */
+    /* if (minutesRef.current.value === "At the kickoff") { */
+    /* minutesBefore = "0"; */
+    /*  } else { */
+    /*  minutesBefore = minutesRef.current.value; */
+    /*  } */
+    /* let hourToRemind = ""; */
+    /* if (minutesBefore === "0") hourToRemind = utcDate.split("T")[1]; */
+    /* const hourAndMinutes = utcDate.split("T")[1].slice(0, 5);
     const minutes = hourAndMinutes.slice(3);
-    const hours = hourAndMinutes.slice(0, 2);
-    if (minutesBefore === "15") {
-      if (parseInt(minutes) === 0) {
-        hourToRemind = `${parseInt(hours) - 1}:45:00Z`;
-      } else {
-        hourToRemind = `${hours}:${parseInt(minutes) - 15 || "00"}:00Z`;
+    const hours = hourAndMinutes.slice(0, 2); */
+    /*  if (minutesBefore === "15") {
+      if (parseInt(minutes) === 0) { */
+    /*   hourToRemind = `${parseInt(hours) - 1}:45:00Z`; */
+    /*  } else { */
+    /*   hourToRemind = `${hours}:${parseInt(minutes) - 15 || "00"}:00Z`; */
+    /*     }
+    } */
+    /*  if (minutesBefore === "30") { */
+    /*   if (parseInt(minutes) === 0) { */
+    /*  hourToRemind = `${parseInt(hours) - 1}:30:00Z`; */
+    /*  } else {
+        if (parseInt(minutes) === 15) { */
+    /* hourToRemind = `${parseInt(hours) - 1}:45:00Z`; */
+    /*   } else { */
+    /* hourToRemind = `${hours}:${parseInt(minutes) - 30 || "00"}:00Z`; */
+    /*     }
+      } */
+    /*  } */
+    /* const createId = (length) => {
+      const result = [];
+      const characters = "0123456789";
+      const charactersLength = characters.length;
+      for (let i = 0; i < length; i++) {
+        result.push(
+          characters.charAt(Math.floor(Math.random() * charactersLength))
+        );
       }
-    }
-    if (minutesBefore === "30") {
-      if (parseInt(minutes) === 0) {
-        hourToRemind = `${parseInt(hours) - 1}:30:00Z`;
-      } else {
-        if (parseInt(minutes) === 15) {
-          hourToRemind = `${parseInt(hours) - 1}:45:00Z`;
+      return result.join("");
+    }; */
+    /*  AWS.config.update({
+      region: "sa-east-1",
+      endpoint: "https://dynamodb.sa-east-1.amazonaws.com",
+      accessKeyId: "AKIAXOOTFKMWLTN5HRK6",
+      secretAccessKey: "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",
+    });
+    const docClient = new AWS.DynamoDB.DocumentClient();
+ */
+    /* const createItem = () => {
+      var params = {
+        TableName: "Reminder",
+        Item: {
+          id: parseInt(createId(10)),
+          email: `${userEmailRef.current.value}`,
+          info: {
+            date: `${utcDate.split("T")[0]}`,
+            input: `${hourToRemind}`,
+            userEmail: `${userEmailRef.current.value}`,
+            match: `${homeName} vs ${awayName}`,
+            dateString: `${date}`,
+            emailBody: `Hey there, the match: ${homeName} vs ${awayName} is going to start in ${minutesBefore} minutes.`,
+          },
+        },
+      };
+      docClient.put(params, function (err, data) {
+        if (err) {
+          console.log(err);
+          setMessage("fail");
         } else {
-          hourToRemind = `${hours}:${parseInt(minutes) - 30 || "00"}:00Z`;
+          console.log("success");
+          setMessage("success");
         }
-      }
-    }
-    const API_URL = `${process.env.REACT_APP_API_GATEWAY}`;
+      });
+    }; */
+    /* const API_URL = `${process.env.REACT_APP_API_GATEWAY}`;
     const body = {
       date: `${utcDate.split("T")[0]}`,
       hour: `${hourToRemind}`,
@@ -76,11 +123,35 @@ const ReminderModal = ({ setModalOpen, match }) => {
         console.log(err);
         setMessage("fail");
       }
+    }; */
+    /* sgMail.setApiKey(
+      "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"
+    ); */
+    const sendEmail = async () => {
+      /*  const msg = {
+        to: "cauegmoyano@gmail.com", // user's email here
+        from: "football-score@gmail.com", // your company's email here
+        subject: `Match reminder `,
+        html: "<strong>and easy to do anywhere, even with Node.js</strong>",
+      }; */
+      /* sgMail
+        .send(msg)
+        .then((response) => {
+          console.log(response[0].statusCode);
+          console.log(response[0].headers);
+        })
+        .catch((error) => {
+          console.error(error);
+        }); */
+      /*  return {
+        statusCode: 200,
+        body: "OK",
+      }; */
     };
     setTimeout(() => {
       setModalOpen(false);
     }, 2500);
-    return sendRequest();
+    return sendEmail();
   };
   return (
     <div className="reminder-modal" id="reminder-modal">
@@ -121,16 +192,16 @@ const ReminderModal = ({ setModalOpen, match }) => {
           style={{ background: "#6600FF" }}
         />
       </form>
-      {message === "success" && (
-        <div class="alert alert-primary p-1 mt-2" role="alert">
+      {/* {message === "success" && (
+        <div className="alert alert-primary p-1 mt-2" role="alert">
           Success! Your reminder has been created.
         </div>
-      )}
-      {message === "fail" && (
-        <div class="alert alert-danger mt-2" role="alert">
+      )} */}
+      {/*  {message === "fail" && (
+        <div className="alert alert-danger mt-2" role="alert">
           Sorry! An error occured. Try again later.
         </div>
-      )}
+      )} */}
     </div>
   );
 };

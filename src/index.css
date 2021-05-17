@@ -32,13 +32,12 @@ body {
   color: #c6e2ff;
 }
 .text-hover-effect {
-  transition: all 0.5s ease-in;
+  transition: all 0.3s ease-in;
   cursor: pointer;
   color: white;
 }
 .neon-effect:hover,
 .text-hover-effect:hover {
-  transform: scale(0.95);
   color: #db1d46;
 }
 .neon-effect2 {
