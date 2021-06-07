@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+<p align="center">
+<a href="https://github.com/cauegarcia/football-score/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/cauegarcia/football-score"></a>
+<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/cauegarcia/football-score">
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/cauegarcia/football-score">
+</p>
+<p align="center">
+ <a href="https://footballscore-reminder.netlify.app/"><img alt="Netlify Deploy" src="https://api.netlify.com/api/v1/badges/83b7aff7-24a8-43a8-935c-0cd3751a4793/deploy-status"></a><br>
+ <a href="https://footballscore-reminder.netlify.app//">Visit the website - Football Score</a>
+</p>
+<h1 align="center">Football Score</h1>
+<p align="center">A web app that provides results and fixtures of main european football leagues.</p>
+<p>This is a project of a web app integrated with an external API - https://www.football-data.org/, exclusively created for the purpose of demonstrating knowledge in the basic front-end languages.</p>
+<p>The page is built with React using hooks. <br>
+  UseState, useEffect, useRef were used to build the interactions and actions within the pages.<br>
+  The single-page navigation is controlled by React Router system which allows easy page changing without refreshing the browser.<br>
+  Bootstrap v5 is used for styling along with CSS </p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 🛠 Technologies
 
-## Available Scripts
+The following technologies were used to build this website.
 
-In the project directory, you can run:
+- React
+- React Router
+- [Bootstrap](https://getbootstrap.com/)
+- CSS
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Author
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<a href="#">
+ <img style="border-radius: 50%;" src="https://github.com/cauegarcia.png" width="100px;" alt=""/>
+ <br />
+ <sub><b>Caue Moyano</b></sub></a> 
+ <a href="#" title="Caue Moyano's Website">💻</a>
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Made by Caue Moyano 👋🏽 Keep in touch!
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[![Linkedin Badge](https://img.shields.io/badge/-Caue-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/caue-garcia-moyano-758203142/)](https://www.linkedin.com/in/caue-garcia-moyano-758203142/) 
+[![Gmail Badge](https://img.shields.io/badge/-cauegmoyano@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:cauegmoyano@gmail.com)](mailto:cauegmoyano@gmail.com)
