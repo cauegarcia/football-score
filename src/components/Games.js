@@ -46,6 +46,13 @@ const Games = ({
       }
     };
 
+    const gamesScheduled = Object.keys(games).reduce((total, key) => {
+      Object.values(games[key]).forEach((league) => {
+        total += league.length;
+      });
+      return total;
+    }, 0);
+
     return (
       <div
         className="main-div p-0  m-1 me-md-2 m-xl-1"
@@ -72,6 +79,11 @@ const Games = ({
         </div>
         <div className="container-fluid main-col-color p-0">
           <div className="container p-0">
+            {gamesScheduled === 0 && (
+              <div className="container p-0 text-light fs-3 text-center">
+                No matches scheduled
+              </div>
+            )}
             {Object.keys(games[page]).map((competition, index) => {
               if (games[page][competition].length === 0) {
                 return <React.Fragment key={index}></React.Fragment>;

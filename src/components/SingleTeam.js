@@ -134,6 +134,10 @@ const SingleTeam = ({ modalOpen, setModalOpen, setModalDetails }) => {
     playersSquad.sort((a, b) => {
       return positionParams[a.position] - positionParams[b.position];
     });
+    const scheduledMatches = Object.keys(fixtures).reduce((total, key) => {
+      total += fixtures[key].length;
+      return total;
+    }, 0);
     return (
       <div className="col-md-8 col-xl-6 p-0 m-1 main-col-color">
         <div className="container-fluid">
@@ -222,6 +226,11 @@ const SingleTeam = ({ modalOpen, setModalOpen, setModalDetails }) => {
               role="tabpanel"
               aria-labelledby="matches-tab"
             >
+              {scheduledMatches === 0 && (
+                <div className="container p-0 text-light fs-3 text-center">
+                  No matches scheduled
+                </div>
+              )}
               {Object.keys(fixtures).map((round, index) => {
                 return fixtures[round].length > 0 ? (
                   <div className="container-fluid p-0" key={index}>

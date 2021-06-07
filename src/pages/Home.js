@@ -50,8 +50,12 @@ const Home = () => {
             arrangedMatches[day][competition.name] = [];
           }
         });
+        const coveredCompetitions = competitions.map(
+          (competition) => competition.name
+        );
         const today = new Date(new Date().toISOString().split("T")[0]);
         matches.forEach((match) => {
+          if (!coveredCompetitions.includes(match.competition.name)) return;
           const dayOfMatch = new Date(match.utcDate.split("T")[0]);
           const difference =
             (dayOfMatch.getTime() - today.getTime()) / 1000 / 86400;
