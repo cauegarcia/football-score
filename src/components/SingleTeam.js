@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import loadingLogo from "../assets/loading.gif";
 import IndividualGame from "./IndividualGame";
 import IndividualPlayer from "./IndividualPlayer";
+import defaultImg from "../assets/no-image.png";
 
 const SingleTeam = ({ modalOpen, setModalOpen, setModalDetails }) => {
   const { id } = useParams();
@@ -154,6 +155,9 @@ const SingleTeam = ({ modalOpen, setModalOpen, setModalDetails }) => {
             alt={name}
             style={{ width: "170px" }}
             className="my-2 my-md-0"
+            onError={(e) => {
+              e.target.src = { defaultImg };
+            }}
           />
           <div className="col col-md-5 d-flex flex-column justify-content-center align-items-center align-items-md-start">
             <h3 className="text-light graduate-font text-center text-md-start">

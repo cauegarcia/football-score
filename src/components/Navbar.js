@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AutoSuggest from "./AutoSuggest";
 
 const Navbar = () => {
   return (
@@ -8,11 +7,10 @@ const Navbar = () => {
       <div className="container-xl d-flex flex-column align-items-center flex-md-row aligm-items-md-between">
         <Link
           to="/"
-          className="navbar-brand fs-1 fw-bold text-uppercase text-light graduate-font"
+          className="navbar-brand fs-2 fw-bold text-uppercase text-light graduate-font"
         >
           Football<span style={{ color: "#6600FF" }}>Score</span>
         </Link>
-        <AutoSuggest />
       </div>
     </nav>
   );

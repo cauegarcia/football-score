@@ -3,6 +3,7 @@ import loadingLogo from "../assets/loading.gif";
 import IndividualTeam from "./IndividualTeam";
 import { BiRightArrow } from "react-icons/bi";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import AutoSuggest from "./AutoSuggest";
 
 const Teams = ({
   loading,
@@ -38,11 +39,41 @@ const Teams = ({
         ref={teamsRef}
       >
         <article className="container p-0 m-0 main-col-color">
-          <div className="py-2" style={{ background: "#6600FF" }}>
+          <div
+            className="py-2"
+            style={{ background: "#6600FF", position: "relative" }}
+          >
+            <div className="team-close-toggler" onClick={() => showTeams()}>
+              {window.innerWidth < 768 ? (
+                <AiOutlineCloseCircle
+                  className="closer-icon"
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    color: "white",
+                    fontSize: "36px",
+                  }}
+                />
+              ) : (
+                <BiRightArrow
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    color: "white",
+                    fontSize: "36px",
+                  }}
+                />
+              )}
+            </div>
             <h4 className="text-center py-2 m-0 graduate-font text-light">
               Teams
             </h4>
           </div>
+          <AutoSuggest />
           <div
             className="p-3 "
             style={{ background: "rgba(202, 228, 225, 0.1)" }}
@@ -50,47 +81,17 @@ const Teams = ({
             <h6 className="m-0 text-light ">Main Teams</h6>
           </div>
           <article>{teams ? mapTeams() : "No teams to display"}</article>
-          {window.innerWidth < 768 ? (
-            ""
-          ) : (
-            <button
-              className="btn container text-light m-0 mt-2 py-2 bg-red-detail"
-              onClick={() => {
-                handleTeams(!displayAllTeams);
-              }}
-            >
-              <h5 className="m-0">
-                {displayAllTeams ? "Less Teams" : "More teams"}
-              </h5>{" "}
-            </button>
-          )}
+          <button
+            className="btn container text-light m-0 mt-2 py-2 bg-red-detail"
+            onClick={() => {
+              handleTeams(!displayAllTeams);
+            }}
+          >
+            <h5 className="m-0">
+              {displayAllTeams ? "Less Teams" : "More teams"}
+            </h5>{" "}
+          </button>
         </article>
-        <div className="team-close-toggler" onClick={() => showTeams()}>
-          {window.innerWidth < 768 ? (
-            <AiOutlineCloseCircle
-              className="closer-icon"
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                color: "white",
-                fontSize: "36px",
-              }}
-            />
-          ) : (
-            <BiRightArrow
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                color: "white",
-                fontSize: "36px",
-              }}
-            />
-          )}
-        </div>
       </div>
     );
   }

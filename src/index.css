@@ -117,7 +117,9 @@ body {
 .show-right {
   right: 0 !important;
   top: 5px !important;
-  position: fixed;
+  bottom: 0;
+  position: absolute;
+  overflow-y: scroll;
   width: 95%;
   z-index: 5;
 }
@@ -177,11 +179,13 @@ body {
 }
 .competition-close-toggler {
   right: 1%;
-  top: 1%;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .team-close-toggler {
   left: 1%;
-  top: 1%;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .searchWrapper {
@@ -268,7 +272,9 @@ body {
     position: relative;
   }
   .inner-div {
-    min-height: 17vh;
+    height: 20vh;
+    max-height: 185px;
+    max-width: 120px;
     border: 5px solid white;
     position: absolute;
     top: 20vh;
@@ -286,18 +292,7 @@ body {
     position: relative;
     top: 0;
     z-index: 0;
-  }
-  .competition-close-toggler {
-    right: -10%;
-    top: 50%;
-  }
-  .team-close-toggler {
-    left: -10%;
-    top: 50%;
-  }
-  .competition-close-toggler,
-  .team-close-toggler {
-    background: #db1d46;
+    overflow-y: auto;
   }
   .trophy {
     font-size: 5vw;

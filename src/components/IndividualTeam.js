@@ -2,11 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const IndividualTeam = ({ team, showTeams }) => {
-  const {
-    id,
-    name,
-    area: { name: country },
-  } = team;
+  const { id, name, country } = team;
   return (
     <div>
       <Link

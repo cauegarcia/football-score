@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import IndividualGame from "./IndividualGame";
+import { Link } from "react-router-dom";
 
 const CompetitionMatches = ({ competitionId }) => {
   const [rounds, setRounds] = useState(null);
@@ -31,7 +32,25 @@ const CompetitionMatches = ({ competitionId }) => {
   }, [competitionId]);
   if (loading) {
     return <div>Loading</div>;
-  } else if (competitionId === "2001") {
+  }
+  if (rounds.count === 0) {
+    return (
+      <div className="col-md-8 col-xl-6 p-0 m-1 main-col-color mx-auto">
+        <div>
+          <h4 className="my-5 text-light text-center">
+            Sorry, an error ocurred.
+          </h4>
+        </div>
+        <Link
+          to="/"
+          className="h4 py-3 d-block text-decoration-none text-light text-center border border-light"
+        >
+          Back to Home
+        </Link>
+      </div>
+    );
+  }
+  if (competitionId === "2001") {
     const { matches } = rounds;
     const allRounds = {
       today: [],

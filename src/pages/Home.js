@@ -8,10 +8,11 @@ import Match from "../components/Match";
 import SingleCompetition from "../components/SingleCompetition";
 import SingleTeam from "../components/SingleTeam";
 import ReminderModal from "../components/ReminderModal";
-import { competitions } from "../competitions";
 import { AiFillTrophy } from "react-icons/ai";
 import { RiTeamFill } from "react-icons/ri";
 import ButtonSections from "../components/ButtonSections";
+import { getCompetitions } from "../utils/getCompetitions";
+import { mainTeams } from "../mainTeamData";
 
 const Home = () => {
   const [games, setGames] = useState(null);
@@ -45,6 +46,7 @@ const Home = () => {
         for (let i = -4; i < 6; i++) {
           arrangedMatches[i] = {};
         }
+        const competitions = getCompetitions(matches);
         competitions.forEach((competition) => {
           for (let day in arrangedMatches) {
             arrangedMatches[day][competition.name] = [];
@@ -93,20 +95,19 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     getGames();
-    getTeams("https://api.football-data.org/v2/competitions/CL/teams");
+    //getTeams("https://api.football-data.org/v2/competitions/CL/teams");
   }, []);
   let teamsToDisplay = [];
-  if (teams) {
-    if (displayAllTeams) {
-      for (let i = 0; i < teams.length; i++) {
-        teamsToDisplay.push(teams[i]);
-      }
-    } else {
-      for (let i = 0; i < 18; i++) {
-        teamsToDisplay.push(teams[i]);
-      }
+  if (displayAllTeams) {
+    for (let i = 0; i < mainTeams.length; i++) {
+      teamsToDisplay.push(mainTeams[i]);
+    }
+  } else {
+    for (let i = 0; i < 18; i++) {
+      teamsToDisplay.push(mainTeams[i]);
     }
   }
+
   const competitionRef = React.useRef();
   const teamsRef = React.useRef();
   const competitionTriggerRef = React.useRef();
@@ -114,13 +115,11 @@ const Home = () => {
   const showCompetitions = () => {
     competitionRef.current.classList.toggle("show-left");
     competitionTriggerRef.current.classList.toggle("display-trigger");
-    if (window.innerWidth < 1200)
-      teamTriggerRef.current.classList.toggle("display-trigger");
+    teamTriggerRef.current.classList.toggle("display-trigger");
   };
   const showTeams = () => {
     teamsRef.current.classList.toggle("show-right");
-    if (window.innerWidth < 1200)
-      competitionTriggerRef.current.classList.toggle("display-trigger");
+    competitionTriggerRef.current.classList.toggle("display-trigger");
     teamTriggerRef.current.classList.toggle("display-trigger");
   };
 
@@ -142,7 +141,7 @@ const Home = () => {
             showDiv={showCompetitions}
             show={"show-comp"}
           >
-            <p className="d-none d-md-block">COMPETITIONS</p>
+            <p className="d-none d-md-block ps-2">COMPETITIONS</p>
             <AiFillTrophy className="trophy" />
           </ButtonSections>
           <Competitions
@@ -186,7 +185,7 @@ const Home = () => {
             show={"show-teams"}
             showDiv={showTeams}
           >
-            <p className="d-none d-md-block">TEAMS</p>
+            <p className="d-none d-md-block ps-2">TEAMS</p>
             <RiTeamFill className="trophy" />
           </ButtonSections>
           <Teams

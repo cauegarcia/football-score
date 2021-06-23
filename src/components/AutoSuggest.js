@@ -44,7 +44,7 @@ const AutoSuggest = () => {
     }
   }, [value]);
   return (
-    <div className="searchWrapper">
+    <div className="searchWrapper my-2 mx-auto">
       <input
         type="text"
         className="inputTeam"

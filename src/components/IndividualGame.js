@@ -6,7 +6,7 @@ const IndividualGame = ({
   match,
   children,
   /* modalOpen,
-  setModalOpen,
+  setModalOpen, 
   setModalDetails, */
 }) => {
   const {
@@ -44,6 +44,7 @@ const IndividualGame = ({
                 ? "fw-bold font-red-detail col-2 col-md-2 my-auto p-0 me-2"
                 : "grey-font col-2 col-md-1 my-auto p-0 me-2"
             } d-flex flex-column align-items-center justify-content-center`}
+            style={{ minWidth: "105px" }}
           >
             {children}
             {status === "FINISHED"
@@ -54,6 +55,8 @@ const IndividualGame = ({
                 : "Second Half"
               : status === "PAUSED"
               ? "Interval"
+              : status === "POSTPONED"
+              ? "Postponed"
               : matchHour}
             {/* {status === "SCHEDULED" ? (
               <span className="d-md-none">
@@ -78,7 +81,7 @@ const IndividualGame = ({
               </div>
               <div
                 className={`${
-                  status !== "FINISHED"
+                  status !== "FINISHED" && status !== "POSTPONED"
                     ? "col-1 col-md-2 fs-5 text-light text-end"
                     : "col-1 col-md-2 fs-5 text-secondary text-end"
                 }`}
@@ -98,7 +101,7 @@ const IndividualGame = ({
               </div>
               <div
                 className={`${
-                  status !== "FINISHED"
+                  status !== "FINISHED" && status !== "POSTPONED"
                     ? "col-1 col-md-2 text-light fs-5"
                     : "col-1 col-md-2 text-secondary fs-5"
                 }`}

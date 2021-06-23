@@ -56,7 +56,7 @@ const Standings = ({ competitionId }) => {
       </div>
     );
   } else {
-    if (standing.error === 404 || !standing) {
+    if (!standing) {
       return (
         <div className="col-md-8 col-xl-6 p-0 m-1 main-col-color mx-auto">
           <div>
