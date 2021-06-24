@@ -18,7 +18,6 @@ const Home = () => {
   const [games, setGames] = useState(null);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [teams, setTeams] = useState(null);
   const [displayAllTeams, setdisplayAllTeams] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalDetail, setModalDetails] = useState(null);
@@ -73,29 +72,10 @@ const Home = () => {
       console.log(err);
     }
   };
-  const getTeams = async (url) => {
-    try {
-      const response = await fetch(url, {
-        headers: {
-          "X-Auth-Token": `${process.env.REACT_APP_FOOTBALL_API_KEY}`,
-        },
-      });
-      const clTeams = await response.json();
-      const { teams } = clTeams;
-      if (teams) {
-        setTeams(teams);
-      } else {
-        setTeams(null);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
     setLoading(true);
     getGames();
-    //getTeams("https://api.football-data.org/v2/competitions/CL/teams");
   }, []);
   let teamsToDisplay = [];
   if (displayAllTeams) {
